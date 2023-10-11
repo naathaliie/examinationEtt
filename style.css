@@ -1,3 +1,4 @@
+/* Normalisering */
 *{
     box-sizing: border-box;
     padding: 0;
@@ -5,57 +6,57 @@
 }
 
 body{
-    height: 100vh;
-    width: 100vW;
+    height: 100vh;/*vh gör att sidan blir inraktiv på höjden */
+    width: 100vW;/*vw gör att sidan blir interaktiv på bredden*/
     background: rgb(134, 134, 237);
     display: grid;
-    grid-template-areas: 
+    grid-template-areas: /* Upplägg över hur sidans selektorer skall placeras */
     "header header header"
     "innehåll innehåll sidebar"
     "output output doNotUse"; 
-    grid-template-columns: repeat(3, 30%);
-    /* Storlek på alla rows */
-    grid-template-rows: repeat(4,auto);
-    gap: 1rem;
-    position: relative;
+    grid-template-columns: repeat(3, 30%); /* Säger hur stor respektive kolumn skall vara */
+    grid-template-rows: repeat(4,auto);/* Säger hur stor respektive rad skall vara */
+    gap: 1rem;/* Mellanrum mellan varje rad och varje kolumn */
+    position: relative; /* Justera ett element utan att påverka layouten för andra element på sidan */
 }
 
+/* Vinnar ruta som dyker upp när man vunnit */
 .winWindow{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* (horisontellt, vertikalt) */
     background-color: yellowgreen;
 }
+
+/* Alla id i svg-bilden */
 #ground,
 #scaffold,
 #legs,
 #arms,
 #body,
 #head{
-   display: none;
+   display: none; /* Gör att de inte syns  */
 }
 
 header{
     width: 100vw;
-    display: flex;
+    display: flex; /* För att använda justify-content som centrerar */
     justify-content: center;
 }
 
 #svgContainer{
     grid-area: innehåll;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-/*     background: black;
- */}
+    display: flex; /* Behövs för att kunna justera bilden */
+    justify-content: center; /* Behövs för att kunna justera vågrätt */
+    align-items: center; /* Behövs för att kunna justera lodrätt */
+}
 
 #wrongGuesses{
     background: pink;
     grid-area: sidebar;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Att allt innehåll förhåller sig till boxens storlek. För stort = ny rad */
 }
 
 
@@ -65,8 +66,8 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: black 10px;
-    gap: 1rem;
+    border: black 10px; /* Ta bort?? */
+    gap: 1rem; /* Mellanrum mellan varje bokstav */
 
 }
 
@@ -74,7 +75,7 @@ header{
 .wordBox{
     width: 5rem;
     border-bottom-style: solid;
-    background-color: blueviolet;
+    background-color:  rgb(134, 134, 237);
 }
 
 .wrongTitle{
