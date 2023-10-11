@@ -1,0 +1,86 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+    width: 100vW;
+    background: rgb(134, 134, 237);
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "innehåll innehåll sidebar"
+    "output output doNotUse"; 
+    grid-template-columns: repeat(3, 30%);
+    /* Storlek på alla rows */
+    grid-template-rows: repeat(4,auto);
+    gap: 1rem;
+    position: relative;
+}
+
+.winWindow{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: yellowgreen;
+}
+#ground,
+#scaffold,
+#legs,
+#arms,
+#body,
+#head{
+   display: none;
+}
+
+header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#svgContainer{
+    grid-area: innehåll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+/*     background: black;
+ */}
+
+#wrongGuesses{
+    background: pink;
+    grid-area: sidebar;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+#wordToGuess{
+    grid-area: output;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black 10px;
+    gap: 1rem;
+
+}
+
+
+.wordBox{
+    width: 5rem;
+    border-bottom-style: solid;
+    background-color: blueviolet;
+}
+
+.wrongTitle{
+
+}
+
+h2{
+    margin-top: 5px;
+}
