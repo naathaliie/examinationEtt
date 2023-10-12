@@ -88,21 +88,9 @@ function letterComparision(input) {
       });
 
       if (correctGuesses.length == wordToGuess.length) {
-        let winWindow = document.createElement("div");
-        winWindow.classList.add("winWindow");
-
-        let winImage = document.createElement("img");
-        winImage.src = "snoopDogg.gif";
-        winWindow.appendChild(winImage);
-        let winMessage = document.createElement("h2");
-        winMessage.innerText = "YOU WIN!";
-        winWindow.appendChild(winMessage);
-        let playAgainButton = document.createElement("button");
-        playAgainButton.classList.add("buttons");
-        playAgainButton.innerText = "play again";
-        playAgainButton.onclick = refreshSite;
-        winWindow.appendChild(playAgainButton);
-        document.querySelector("body").appendChild(winWindow);
+        setTimeout(() => {
+          wonGameFunction();
+        }, 500);
       }
       break;
     }
@@ -126,6 +114,24 @@ function letterComparision(input) {
     }
   }
 }
+function wonGameFunction() {
+  let winWindow = document.createElement("div");
+  winWindow.classList.add("winWindow");
+
+  let winImage = document.createElement("img");
+  winImage.src = "snoopDogg.gif";
+  winWindow.appendChild(winImage);
+  let winMessage = document.createElement("h2");
+  winMessage.innerText = "YOU WIN!";
+  winWindow.appendChild(winMessage);
+  let playAgainButton = document.createElement("button");
+  playAgainButton.classList.add("buttons");
+  playAgainButton.innerText = "play again";
+  playAgainButton.onclick = refreshSite;
+  winWindow.appendChild(playAgainButton);
+  document.querySelector("body").appendChild(winWindow);
+}
+
 function lostGameFunction() {
   beat.play();
   console.log("något");
