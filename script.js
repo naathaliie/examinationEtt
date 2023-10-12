@@ -1,4 +1,4 @@
-//deklarera variabel
+// 
 let numberOfWrongGuesses = 0;
 let numberOfRightGuesses = 0;
 
