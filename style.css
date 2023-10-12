@@ -1,3 +1,8 @@
+@font-face {
+  font-family: darkSoulsFont;
+  src: url(OptimusPrinceps.ttf);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -17,7 +22,7 @@ body {
   grid-template-rows: repeat(4, auto);
   gap: 1rem;
   position: relative;
-  background-color: #f0dbd2;
+  background-image: url(dark-souls-type-background-texture-for-ui-use-upscaled.png);
 }
 
 #ground,
@@ -44,11 +49,11 @@ header {
 
   margin-left: 1rem;
   border-radius: 1rem;
-  background: #e0b8a6;
+  /* background: #e0b8a6; */
 }
 
 #wrongGuesses {
-  background: #e0b8a6;
+  /* background: #e0b8a6; */
   grid-area: sidebar;
   display: flex;
   flex-wrap: wrap;
@@ -64,15 +69,18 @@ header {
   align-items: center;
   border: black 10px;
   gap: 1rem;
-  background: #e0b8a6;
+  /* background: #e0b8a6; */
   border-radius: 1rem;
   margin-left: 1rem;
   padding: 1rem;
 }
 
 .wordBox {
+  display: flex;
+  justify-content: center;
   width: 5rem;
   border-bottom-style: solid;
+  border-bottom-color: white;
 }
 
 .wrongTitle {
@@ -86,8 +94,17 @@ header {
 .wrongLetterUnit {
   margin: 0.5rem;
 }
-h2 {
-  margin-top: 5px;
+
+h1,
+h2,
+h3,
+p {
+  color: rgb(192, 190, 190);
+  letter-spacing: 0.5rem;
+  font-family: darkSoulsFont;
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(0, 0, 0, 0.295);
 }
 
 .winWindow {
