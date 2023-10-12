@@ -10,7 +10,7 @@
 
 let numberOfWrongGuesses = 0;
 let numberOfRightGuesses = 0;
-
+let beat = new Audio("dark-souls-_you-died_-sound-effect-from-youtube.mp3");
 //lyssnar efter knapptryckning och fångar värdet
 window.addEventListener(
   "keydown",
@@ -73,7 +73,7 @@ function checkIfLetter(input) {
 
 //Skapa funktion som kontrollerar om bokstaven stämmer eller inte.
 //Om du gissat fel skall en del av hangman dyka upp
-
+//wordToGuess = FROG
 function letterComparision(input) {
   let doesLetterExist = false;
   for (let i = 0; i < wordToGuess.length; i++) {
@@ -120,15 +120,16 @@ function letterComparision(input) {
     numberOfWrongGuesses++; // Ökar antalet felgissningar
 
     if (numberOfWrongGuesses == hangMan.length) {
+      beat.play();
       console.log("något");
       let loseWindow = document.createElement("div");
       loseWindow.classList.add("winWindow");
 
       let loseImage = document.createElement("img");
-      loseImage.src = "giphy.gif";
+      loseImage.src = "youDied.gif";
       loseWindow.appendChild(loseImage);
       let loseMessage = document.createElement("h2");
-      loseMessage.innerText = "YOU LOSE!";
+      loseMessage.innerText = "YOU DIED!";
       let correctWord = document.createElement("h3");
       correctWord.innerText = "The word was: " + wordToGuess.join("");
       loseWindow.appendChild(loseMessage);
