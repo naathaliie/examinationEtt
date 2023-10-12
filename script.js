@@ -98,6 +98,7 @@ function letterComparision(input) {
         winMessage.innerText = "YOU WIN!";
         winWindow.appendChild(winMessage);
         let playAgainButton = document.createElement("button");
+        playAgainButton.classList.add("buttons");
         playAgainButton.innerText = "play again";
         playAgainButton.onclick = refreshSite;
         winWindow.appendChild(playAgainButton);
@@ -133,6 +134,7 @@ function letterComparision(input) {
       loseWindow.appendChild(loseMessage);
       loseWindow.appendChild(correctWord);
       let playAgainButton = document.createElement("button");
+      playAgainButton.classList.add("buttons");
       playAgainButton.innerText = "play again";
       playAgainButton.onclick = refreshSite;
       loseWindow.appendChild(playAgainButton);
