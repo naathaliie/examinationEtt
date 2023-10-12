@@ -1,4 +1,13 @@
 //deklarera variabel
+//Skapa en ordlista samt array för hangman samt felaktiga gissningar
+//Om svaret stämmer skall bokstaven visas på korrekt plats i gissningslådan.
+
+//Om svaret inte stämmet skall bokstaven visas i wrongGuesses + en del av hangman skall visas.
+
+//Match slut, testa igen?
+//Vinst
+//Förlust
+
 let numberOfWrongGuesses = 0;
 let numberOfRightGuesses = 0;
 
@@ -6,14 +15,38 @@ let numberOfRightGuesses = 0;
 window.addEventListener(
   "keydown",
   function (e) {
-    checkIfLetter(e.key);
+    checkIfLetter(e.key.toUpperCase());
   },
   false
 );
 
-//Skapa en ordlista samt array för hangman samt felaktiga gissningar
-const wordArray = ["kaka", "word", "sentence", "cookie"];
-const hangMan = ["ground", "scaffold", "legs", "arms", "body", "head"];
+const wordArray = [
+  "ENCYCLOPEDIA",
+  "NATIONAL",
+  "ALPHABET",
+  "COOKIE",
+  "SUITE",
+  "HAMSTER",
+  "LAMB",
+  "PANTHER",
+  "LEMUR",
+  "LOVEBIRD",
+  "SLOTH",
+  "EAGLE",
+  "MARMOSET",
+  "BUNNY",
+  "HIGHLAND",
+  "CHIPMUNK",
+  "MOUSE",
+  "ZEBU",
+  "STEER",
+  "STARFISH",
+  "SILVER",
+  "HORSE",
+  "MOOSE",
+  "FROG",
+];
+const hangMan = ["ground", "scaffold", "head", "body", "arms", "legs"];
 const guessedLetters = [];
 const correctGuesses = [];
 
@@ -33,11 +66,7 @@ for (let i = 0; i < wordToGuess.length; i++) {
 }
 //Kontrollerar inputvärde så att det enbart är en bokstav och inte en siffra och kör sedan jämförelsen
 function checkIfLetter(input) {
-  if (
-    /[A-Za-z]/.test(input) &&
-    typeof input === "string" &&
-    input.length === 1
-  ) {
+  if (/[A-Z]/.test(input) && typeof input === "string" && input.length === 1) {
     letterComparision(input);
   }
 }
@@ -79,8 +108,9 @@ function letterComparision(input) {
   }
   if (!doesLetterExist && !guessedLetters.includes(input)) {
     let newWrongLetter = document.createElement("h2");
+    newWrongLetter.classList.add("wrongLetterUnit");
     newWrongLetter.innerText = input;
-    document.getElementById("wrongGuesses").appendChild(newWrongLetter);
+    document.getElementById("wrongLetterContainer").appendChild(newWrongLetter);
     guessedLetters.push(input);
 
     document.getElementById(hangMan[numberOfWrongGuesses]).style.display =
@@ -98,7 +128,7 @@ function letterComparision(input) {
       loseWindow.appendChild(loseImage);
       let loseMessage = document.createElement("h2");
       loseMessage.innerText = "YOU LOSE!";
-      let correctWord = document.createElement("p");
+      let correctWord = document.createElement("h3");
       correctWord.innerText = "The word was: " + wordToGuess.join("");
       loseWindow.appendChild(loseMessage);
       loseWindow.appendChild(correctWord);
@@ -114,10 +144,3 @@ function letterComparision(input) {
 function refreshSite() {
   window.location = "index.html";
 }
-//Om svaret stämmer skall bokstaven visas på korrekt plats i gissningslådan.
-
-//Om svaret inte stämmet skall bokstaven visas i wrongGuesses + en del av hangman skall visas.
-
-//Match slut, testa igen?
-//Vinst
-//Förlust

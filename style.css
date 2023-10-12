@@ -1,86 +1,106 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    height: 100vh;
-    width: 100vW;
-    background: rgb(134, 134, 237);
-    display: grid;
-    grid-template-areas: 
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
     "header header header"
     "innehåll innehåll sidebar"
-    "output output doNotUse"; 
-    grid-template-columns: repeat(3, 30%);
-    /* Storlek på alla rows */
-    grid-template-rows: repeat(4,auto);
-    gap: 1rem;
-    position: relative;
+    "output output sidebar";
+  grid-template-columns: repeat(3, 30%);
+  /* Storlek på alla rows */
+  grid-template-rows: repeat(4, auto);
+  gap: 1rem;
+  position: relative;
+  background-color: #f0dbd2;
 }
 
-.winWindow{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: yellowgreen;
-}
 #ground,
 #scaffold,
 #legs,
 #arms,
 #body,
-#head{
-   display: none;
+#head {
+  display: none;
 }
 
-header{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+header {
+  padding-top: 1rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
-#svgContainer{
-    grid-area: innehåll;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-/*     background: black;
- */}
+#svgContainer {
+  grid-area: innehåll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-#wrongGuesses{
-    background: pink;
-    grid-area: sidebar;
-    display: flex;
-    flex-wrap: wrap;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  background: #e0b8a6;
 }
 
-
-
-#wordToGuess{
-    grid-area: output;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: black 10px;
-    gap: 1rem;
-
+#wrongGuesses {
+  background: #e0b8a6;
+  grid-area: sidebar;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 1rem;
+  padding: 1rem;
+  flex-direction: column;
 }
 
-
-.wordBox{
-    width: 5rem;
-    border-bottom-style: solid;
-    background-color: blueviolet;
+#wordToGuess {
+  grid-area: output;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: black 10px;
+  gap: 1rem;
+  background: #e0b8a6;
+  border-radius: 1rem;
+  margin-left: 1rem;
 }
 
-.wrongTitle{
-
+.wordBox {
+  width: 5rem;
+  border-bottom-style: solid;
 }
 
-h2{
-    margin-top: 5px;
+.wrongTitle {
+}
+#wrongLetterContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+}
+.wrongLetterUnit {
+  margin: 0.5rem;
+}
+h2 {
+  margin-top: 5px;
+}
+
+.winWindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  background-color: #d38e6e;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
