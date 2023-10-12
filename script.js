@@ -120,30 +120,34 @@ function letterComparision(input) {
     numberOfWrongGuesses++; // Ökar antalet felgissningar
 
     if (numberOfWrongGuesses == hangMan.length) {
-      beat.play();
-      console.log("något");
-      let loseWindow = document.createElement("div");
-      loseWindow.classList.add("winWindow");
-
-      let loseImage = document.createElement("img");
-      loseImage.src = "youDied.gif";
-      loseWindow.appendChild(loseImage);
-      let loseMessage = document.createElement("h2");
-      loseMessage.innerText = "YOU DIED!";
-      let correctWord = document.createElement("h3");
-      correctWord.innerText = "The word was: " + wordToGuess.join("");
-      loseWindow.appendChild(loseMessage);
-      loseWindow.appendChild(correctWord);
-      let playAgainButton = document.createElement("button");
-      playAgainButton.classList.add("buttons");
-      playAgainButton.innerText = "play again";
-      playAgainButton.onclick = refreshSite;
-      loseWindow.appendChild(playAgainButton);
-      document.querySelector("body").appendChild(loseWindow);
+      setTimeout(() => {
+        lostGameFunction();
+      }, 1000);
     }
   }
 }
+function lostGameFunction() {
+  beat.play();
+  console.log("något");
+  let loseWindow = document.createElement("div");
+  loseWindow.classList.add("winWindow");
 
+  let loseImage = document.createElement("img");
+  loseImage.src = "youDied.gif";
+  loseWindow.appendChild(loseImage);
+  let loseMessage = document.createElement("h2");
+  loseMessage.innerText = "YOU DIED!";
+  let correctWord = document.createElement("h3");
+  correctWord.innerText = "The word was: " + wordToGuess.join("");
+  loseWindow.appendChild(loseMessage);
+  loseWindow.appendChild(correctWord);
+  let playAgainButton = document.createElement("button");
+  playAgainButton.classList.add("buttons");
+  playAgainButton.innerText = "play again";
+  playAgainButton.onclick = refreshSite;
+  loseWindow.appendChild(playAgainButton);
+  document.querySelector("body").appendChild(loseWindow);
+}
 function refreshSite() {
   window.location = "index.html";
 }
