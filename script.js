@@ -92,7 +92,7 @@ function letterComparision(input) {
         winWindow.classList.add("winWindow");
 
         let winImage = document.createElement("img");
-        winImage.src = "giphy.gif";
+        winImage.src = "snoopDogg.gif";
         winWindow.appendChild(winImage);
         let winMessage = document.createElement("h2");
         winMessage.innerText = "YOU WIN!";

@@ -60,6 +60,7 @@ header {
   border-radius: 1rem;
   padding: 1rem;
   flex-direction: column;
+  align-items: center;
 }
 
 #wordToGuess {
@@ -113,7 +114,7 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
-  background-color: #d38e6e;
+  background-color: black;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -133,9 +134,8 @@ p {
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
+  font-family: darkSoulsFont;
+  font-size: 2rem;
   font-weight: 600;
   line-height: normal;
   margin: 0;
