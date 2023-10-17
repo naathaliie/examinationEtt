@@ -35,7 +35,7 @@ console.log(wordToGuess);
 const hangMan = ["ground", "scaffold", "head", "body", "arms", "legs"];
 
 //Ljudfil som spelas när man förlorar
-let beat = new Audio("dark-souls-_you-died_-sound-effect-from-youtube.mp3");
+let beat = new Audio("sfx/dark-souls-_you-died_-sound-effect-from-youtube.mp3");
 
 //lyssnar efter knapptryckning och fångar värdet
 window.addEventListener(
@@ -129,7 +129,7 @@ function wonGameFunction() {
   winWindow.classList.add("winWindow");
 
   let winImage = document.createElement("img");
-  winImage.src = "snoopDogg.gif";
+  winImage.src = "bilder/snoopDogg.gif";
   winWindow.appendChild(winImage);
   let winMessage = document.createElement("h2");
   winMessage.innerText = "YOU WIN!";
@@ -149,7 +149,7 @@ function lostGameFunction() {
   loseWindow.classList.add("winWindow");
 
   let loseImage = document.createElement("img");
-  loseImage.src = "youDied.gif";
+  loseImage.src = "bilder/youDied.gif";
   loseWindow.appendChild(loseImage);
   let loseMessage = document.createElement("h2");
   loseMessage.innerText = "YOU DIED!";

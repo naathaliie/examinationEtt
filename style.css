@@ -1,6 +1,6 @@
 @font-face {
   font-family: darkSoulsFont;
-  src: url(OptimusPrinceps.ttf);
+  src: url(optimus-princeps-font-semibold-dark-souls-betterstudio.com/OptimusPrinceps.ttf);
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   grid-template-rows: repeat(4, auto);
   gap: 1rem;
   position: relative;
-  background-image: url(dark-souls-type-background-texture-for-ui-use-upscaled.png);
+  background-image: url(bilder/dark-souls-type-background-texture-for-ui-use-upscaled.png);
 }
 
 #ground,
