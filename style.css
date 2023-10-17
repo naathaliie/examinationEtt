@@ -18,7 +18,6 @@ body {
     "innehåll innehåll sidebar"
     "output output sidebar";
   grid-template-columns: repeat(3, 30%);
-  /* Storlek på alla rows */
   grid-template-rows: repeat(4, auto);
   gap: 1rem;
   position: relative;
@@ -46,14 +45,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin-left: 1rem;
   border-radius: 1rem;
-  /* background: #e0b8a6; */
 }
 
 #wrongGuesses {
-  /* background: #e0b8a6; */
   grid-area: sidebar;
   display: flex;
   flex-wrap: wrap;
@@ -70,7 +66,6 @@ header {
   align-items: center;
   border: black 10px;
   gap: 1rem;
-  /* background: #e0b8a6; */
   border-radius: 1rem;
   margin-left: 1rem;
   padding: 1rem;
@@ -84,8 +79,6 @@ header {
   border-bottom-color: white;
 }
 
-.wrongTitle {
-}
 
 #wrongLetterContainer {
   display: flex;
