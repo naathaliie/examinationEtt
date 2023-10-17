@@ -119,8 +119,9 @@ function letterComparision(input) {
         .appendChild(newWrongLetter);
       guessedLetters.push(input);
 
-      document.getElementById(hangMan[numberOfWrongGuesses]).style.display =
-        "block";
+      document.getElementById(
+        hangMan[guessedLetters.length - 1]
+      ).style.display = "block";
 
       //Om mängden felaktiga gissningar är samma som längden på SVG arrayn har du slut på chanser
       //Då körs förlustfunktionen med en 1sekund delay så du kan se sista biten av bilden.
