@@ -8,20 +8,16 @@
   padding: 0;
   margin: 0;
 }
-
-body {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-areas:
-    "header header header"
-    "innehåll innehåll sidebar"
-    "output output sidebar";
-  grid-template-columns: repeat(3, 30%);
-  grid-template-rows: repeat(4, auto);
-  gap: 1rem;
-  position: relative;
-  background-image: url(bilder/dark-souls-type-background-texture-for-ui-use-upscaled.png);
+h1,
+h2,
+h3,
+p {
+  color: rgb(192, 190, 190);
+  letter-spacing: 0.5rem;
+  font-family: darkSoulsFont;
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(0, 0, 0, 0.295);
 }
 
 #ground,
@@ -38,6 +34,21 @@ header {
   width: 100vw;
   display: flex;
   justify-content: center;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "innehåll innehåll sidebar"
+    "output output sidebar";
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: repeat(4, auto);
+  gap: 1rem;
+  position: relative;
+  background-image: url(bilder/dark-souls-type-background-texture-for-ui-use-upscaled.png);
 }
 
 #svgContainer {
@@ -79,7 +90,6 @@ header {
   border-bottom-color: white;
 }
 
-
 #wrongLetterContainer {
   display: flex;
   flex-direction: row;
@@ -87,18 +97,6 @@ header {
 }
 .wrongLetterUnit {
   margin: 0.5rem;
-}
-
-h1,
-h2,
-h3,
-p {
-  color: rgb(192, 190, 190);
-  letter-spacing: 0.5rem;
-  font-family: darkSoulsFont;
-  text-decoration: line-through;
-  text-decoration-thickness: 3px;
-  text-decoration-color: rgba(0, 0, 0, 0.295);
 }
 
 .winWindow {
