@@ -1,13 +1,3 @@
-//deklarera variabel
-//Skapa en ordlista samt array för hangman samt felaktiga gissningar
-//Om svaret stämmer skall bokstaven visas på korrekt plats i gissningslådan.
-
-//Om svaret inte stämmet skall bokstaven visas i wrongGuesses + en del av hangman skall visas.
-
-//Match slut, testa igen?
-//Vinst
-//Förlust
-
 //Array med ord, dessa alla kan komma att behöva gissas.
 const wordArray = [
   "ENCYCLOPEDIA",
