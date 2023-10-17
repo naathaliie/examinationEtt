@@ -8,18 +8,7 @@
 //Vinst
 //Förlust
 
-let numberOfWrongGuesses = 0;
-let numberOfRightGuesses = 0;
-let beat = new Audio("dark-souls-_you-died_-sound-effect-from-youtube.mp3");
-//lyssnar efter knapptryckning och fångar värdet
-window.addEventListener(
-  "keydown",
-  function (e) {
-    checkIfLetter(e.key.toUpperCase());
-  },
-  false
-);
-
+//Array med ord, dessa alla kan komma att behöva gissas.
 const wordArray = [
   "ENCYCLOPEDIA",
   "NATIONAL",
@@ -46,74 +35,110 @@ const wordArray = [
   "MOOSE",
   "FROG",
 ];
-const hangMan = ["ground", "scaffold", "head", "body", "arms", "legs"];
-const guessedLetters = [];
-const correctGuesses = [];
 
 //välj ordet som skall gissas
 const wordToGuess =
   wordArray[Math.floor(Math.random() * wordArray.length)].split("");
 console.log(wordToGuess);
-//Skapa gissnings låda. Tom rad för varje bokstav.
-for (let i = 0; i < wordToGuess.length; i++) {
-  let wordBox = document.createElement("div"); //Skapar ett nytt div-element
-  wordBox.classList.add("wordBox");
-  let letterBox = document.createElement("h1"); //Skapar ett h1-element
 
-  letterBox.classList.add(wordToGuess[i]); //Ger respektive h1-element sin egen klass för framtida jämförelser
-  wordBox.appendChild(letterBox); //Lägger letterbox i wordbox
+//Array med ID på alla delar av SVG bilden som visas när man förlorar, dessa används för att kalla på ID och ge dem display:block när dem skall visas.
+const hangMan = ["ground", "scaffold", "head", "body", "arms", "legs"];
+
+//Variablar som används för att hålla koll på mängden felaktiga gissningar. denna används för att visa korrekt del av SVG bilden.
+let numberOfWrongGuesses = 0;
+
+//Ljudfil som spelas när man förlorar
+let beat = new Audio("dark-souls-_you-died_-sound-effect-from-youtube.mp3");
+
+//lyssnar efter knapptryckning och fångar värdet
+window.addEventListener(
+  "keydown",
+  function (e) {
+    letterComparision(e.key.toUpperCase());
+  },
+  false
+);
+
+//Arrayer som används för att hålla koll på vad som redan gissats korrekt så du ej kan gissa samma fel eller rätt flera gånger.
+const guessedLetters = [];
+const correctGuesses = [];
+
+//Skapar en div och ett h1 element för varje bokstav som finns i ordet som skall gissas.
+//Ger också klass till divven samt till h1 som är samma bokstav som skall gissas.
+//Exempel: FROG: 4 h1 skapas med klasserna: F, R, O och G. Detta görs för att sedan enklare kunna ställa bokstäverna på korrekt plats.
+//Dessa läggs sedan ut i den förberedda containern.
+for (let i = 0; i < wordToGuess.length; i++) {
+  let wordBox = document.createElement("div");
+  wordBox.classList.add("wordBox");
+  let letterBox = document.createElement("h1");
+  letterBox.classList.add(wordToGuess[i]);
+  wordBox.appendChild(letterBox);
   document.getElementById("wordToGuess").appendChild(wordBox);
 }
-//Kontrollerar inputvärde så att det enbart är en bokstav och inte en siffra och kör sedan jämförelsen
-function checkIfLetter(input) {
-  if (/[A-Z]/.test(input) && typeof input === "string" && input.length === 1) {
-    letterComparision(input);
-  }
-}
 
-//Skapa funktion som kontrollerar om bokstaven stämmer eller inte.
-//Om du gissat fel skall en del av hangman dyka upp
-//wordToGuess = FROG
+//Huvudfunktion. Tar in bokstaven och gör:
 function letterComparision(input) {
+  //Skapa bool för kontroller
   let doesLetterExist = false;
-  for (let i = 0; i < wordToGuess.length; i++) {
-    if (input === wordToGuess[i]) {
-      doesLetterExist = true;
-    }
-    if (doesLetterExist && !correctGuesses.includes(input)) {
-      const lettersToWrite = document.querySelectorAll(`.${wordToGuess[i]}`);
-      lettersToWrite.forEach((letter) => {
-        letter.innerText = wordToGuess[i];
-        correctGuesses.push(wordToGuess[i]);
-      });
 
-      if (correctGuesses.length == wordToGuess.length) {
-        setTimeout(() => {
-          wonGameFunction();
-        }, 500);
+  //Säkerställer att enbart enstaka bokstäver kommer in.
+  if (/[A-Z]/.test(input) && typeof input === "string" && input.length === 1) {
+    //kontrollerar om input finns i ordet som skall gissas, sätter isåfall boolen till true.
+    for (let i = 0; i < wordToGuess.length; i++) {
+      if (input === wordToGuess[i]) {
+        doesLetterExist = true;
       }
-      break;
+      //Kontrollerar så att bokstaven inte gissats korrekt redan med hjälp av arrayn correctGuesses.
+      //om den inte har gjort det och boolen är true så selectas alla h1or med samma klass som bokstaven.
+      //Exempel: frog, f är input och f är klassnamn på en h1. alla h1or med den bokstaven som klassnamn skrivs sedan ut i en foreach loop.
+      //Till sist uppdateras correctGuesses så samma bokstav inte kan gissas korrekt igen.
+      if (doesLetterExist && !correctGuesses.includes(input)) {
+        const lettersToWrite = document.querySelectorAll(`.${wordToGuess[i]}`);
+        lettersToWrite.forEach((letter) => {
+          letter.innerText = wordToGuess[i];
+          correctGuesses.push(wordToGuess[i]);
+        });
+        //Ifall arrayn som håller koll på korrekta gissningar är lika lång som ordet som skall gissas har du gissat rätt på allt.
+        //Då körs vinstfunktionen med en 500ms timeout
+        if (correctGuesses.length == wordToGuess.length) {
+          setTimeout(() => {
+            wonGameFunction();
+          }, 500);
+        }
+        break;
+      }
     }
-  }
-  if (!doesLetterExist && !guessedLetters.includes(input)) {
-    let newWrongLetter = document.createElement("h2");
-    newWrongLetter.classList.add("wrongLetterUnit");
-    newWrongLetter.innerText = input;
-    document.getElementById("wrongLetterContainer").appendChild(newWrongLetter);
-    guessedLetters.push(input);
+    //Om bool är falsk (input finns ej att hitta i ordet som skall gissas)
+    //guessedLetters används för att hålla koll på att du inte kan gissa samma felaktiga bokstav flera gånger.
+    //Om båda dessa är falska så skapas ett h2 element med den nya felaktiga gissningen som text,
+    //Denna läggs ut i containern för felaktiga gissningar, den felaktiga gissningen sparas
+    //Till sist visas en del av SVGn samt felaktiga gissningar går upp med 1.
+    if (!doesLetterExist && !guessedLetters.includes(input)) {
+      let newWrongLetter = document.createElement("h2");
+      newWrongLetter.classList.add("wrongLetterUnit");
+      newWrongLetter.innerText = input;
+      document
+        .getElementById("wrongLetterContainer")
+        .appendChild(newWrongLetter);
+      guessedLetters.push(input);
 
-    document.getElementById(hangMan[numberOfWrongGuesses]).style.display =
-      "block";
+      document.getElementById(hangMan[numberOfWrongGuesses]).style.display =
+        "block";
 
-    numberOfWrongGuesses++; // Ökar antalet felgissningar
-
-    if (numberOfWrongGuesses == hangMan.length) {
-      setTimeout(() => {
-        lostGameFunction();
-      }, 1000);
+      numberOfWrongGuesses++;
+      //Om mängden felaktiga gissningar är samma som längden på SVG arrayn har du slut på chanser
+      //Då körs förlustfunktionen med en 1sekund delay så du kan se sista biten av bilden.
+      if (numberOfWrongGuesses == hangMan.length) {
+        setTimeout(() => {
+          lostGameFunction();
+        }, 1000);
+      }
     }
   }
 }
+
+//Funktionen skapar en div och ger den klasslista för CSS så den visas i mitten av skärmen.
+//I fönstret skapas en bild, en h2a och en knapp för att spela igen.
 function wonGameFunction() {
   let winWindow = document.createElement("div");
   winWindow.classList.add("winWindow");
@@ -131,7 +156,7 @@ function wonGameFunction() {
   winWindow.appendChild(playAgainButton);
   document.querySelector("body").appendChild(winWindow);
 }
-
+//funktionen gör samma sak som förra. Utöver detta spelar den även förlustljudet samt skriver ut vad det korrekta ordet var.
 function lostGameFunction() {
   beat.play();
   console.log("något");
@@ -154,6 +179,7 @@ function lostGameFunction() {
   loseWindow.appendChild(playAgainButton);
   document.querySelector("body").appendChild(loseWindow);
 }
+//För att spela igen.
 function refreshSite() {
   window.location = "index.html";
 }
