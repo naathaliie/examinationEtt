@@ -111,6 +111,8 @@ function letterComparision(input) {
     //Denna läggs ut i containern för felaktiga gissningar, den felaktiga gissningen sparas
     //Till sist visas en del av SVGn
     if (!doesLetterExist && !guessedLetters.includes(input)) {
+      document.getElementById(hangMan[guessedLetters.length]).style.display =
+        "block";
       let newWrongLetter = document.createElement("h2");
       newWrongLetter.classList.add("wrongLetterUnit");
       newWrongLetter.innerText = input;
@@ -118,10 +120,6 @@ function letterComparision(input) {
         .getElementById("wrongLetterContainer")
         .appendChild(newWrongLetter);
       guessedLetters.push(input);
-
-      document.getElementById(
-        hangMan[guessedLetters.length - 1]
-      ).style.display = "block";
 
       //Om mängden felaktiga gissningar är samma som längden på SVG arrayn har du slut på chanser
       //Då körs förlustfunktionen med en 1sekund delay så du kan se sista biten av bilden.
