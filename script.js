@@ -44,9 +44,6 @@ console.log(wordToGuess);
 //Array med ID på alla delar av SVG bilden som visas när man förlorar, dessa används för att kalla på ID och ge dem display:block när dem skall visas.
 const hangMan = ["ground", "scaffold", "head", "body", "arms", "legs"];
 
-//Variablar som används för att hålla koll på mängden felaktiga gissningar. denna används för att visa korrekt del av SVG bilden.
-let numberOfWrongGuesses = 0;
-
 //Ljudfil som spelas när man förlorar
 let beat = new Audio("dark-souls-_you-died_-sound-effect-from-youtube.mp3");
 
@@ -112,7 +109,7 @@ function letterComparision(input) {
     //guessedLetters används för att hålla koll på att du inte kan gissa samma felaktiga bokstav flera gånger.
     //Om båda dessa är falska så skapas ett h2 element med den nya felaktiga gissningen som text,
     //Denna läggs ut i containern för felaktiga gissningar, den felaktiga gissningen sparas
-    //Till sist visas en del av SVGn samt felaktiga gissningar går upp med 1.
+    //Till sist visas en del av SVGn
     if (!doesLetterExist && !guessedLetters.includes(input)) {
       let newWrongLetter = document.createElement("h2");
       newWrongLetter.classList.add("wrongLetterUnit");
@@ -125,10 +122,9 @@ function letterComparision(input) {
       document.getElementById(hangMan[numberOfWrongGuesses]).style.display =
         "block";
 
-      numberOfWrongGuesses++;
       //Om mängden felaktiga gissningar är samma som längden på SVG arrayn har du slut på chanser
       //Då körs förlustfunktionen med en 1sekund delay så du kan se sista biten av bilden.
-      if (numberOfWrongGuesses == hangMan.length) {
+      if (guessedLetters.length === hangMan.length) {
         setTimeout(() => {
           lostGameFunction();
         }, 1000);
